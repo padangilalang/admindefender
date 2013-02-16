@@ -1,0 +1,3 @@
+This tools is under GNU/GPL License
+You can change the code, but you cannot change the brandname.
+
