@@ -1,3 +1,4 @@
 This tools is under GNU/GPL License
-You can change the code, but you cannot change the brandname.
+You can change the code, but you cannot change the sponsore name.
+See GNU-GPL.txt file
 
