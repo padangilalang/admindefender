@@ -1,8 +1,8 @@
 <?php
 session_start();
-require_once 'controller/connection.php';
-require_once 'controller/xss_clean.php';
-require_once 'controller/getip.php';
+require_once 'connection.php';
+require_once 'xss_clean.php';
+require_once 'getip.php';
 error_reporting(0);
 
 $aut="SELECT `idautentikasi`, `keyautentikasi`, `ipaddress`, `date`, `chmod` FROM `autentikasi` WHERE `ipaddress`='".ip()."'";
@@ -14,7 +14,7 @@ if($rowaut==0){
 <title>juniorriau | guardian project</title>
 <link rel="stylesheet" type="text/css" href="style/guardian.css"/>
 <body >
-<div id="logo"><a href="guardian.aspx"><img src="images/guardian.png" alt="Junior Guardian" border="0" /></a></div>
+<div id="logo"><a href="guardian.aspx"><img src="guardian.png" alt="Junior Guardian" border="0" /></a></div>
 <div id="login_container">
 <div id="login_msg"><span style="font-size:14px;"><strong>Welcome Back</strong></span><br>Please enter your authentication key below to authenticate your access.</div>  <div id="login">
     <form action="guardian.aspx" method="post" name="frmlogin" id="frmlogin">
@@ -103,7 +103,7 @@ if(isset($_POST['key1']) && isset($_POST['key2']) && isset($_POST['key3'])){
 
 //locked process
 
-if(isset($_GET['logout']) && xss_clean(htmlentities($_GET['logout']))=="true"){
+if(isset($_GET['logout'])){
 	session_destroy();
 	$autdata="DELETE FROM `autentikasi` WHERE `idautentikasi` > 0";
 		$authres=mysql_query($autdata);
