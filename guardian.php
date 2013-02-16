@@ -73,13 +73,13 @@ else{
 //authprocess
 
 if(isset($_POST['key1']) && isset($_POST['key2']) && isset($_POST['key3'])){
-	$authen="SELECT * FROM `keyautentikasi` WHERE key1='".mysql_real_escape_string(xss_clean($_POST['key1']))."' and key2='".mysql_real_escape_string(xss_clean($_POST['key2']))."' and key3='".mysql_real_escape_string(xss_clean($_POST['key3']))."'";
+	$authen="SELECT * FROM `keyautentikasi` WHERE key1='".sha1(md5(mysql_real_escape_string(xss_clean($_POST['key1']))))."' and key2='".sha1(md5(mysql_real_escape_string(xss_clean($_POST['key2']))))."' and key3='".sha1(md5(mysql_real_escape_string(xss_clean($_POST['key3']))))."'";
 	$authres=mysql_query($authen);
 	$rowauth=mysql_num_rows($authres);
 	if($rowauth>0){
 		$_SESSION['guardian']=ip();
 		$rowauth=mysql_fetch_assoc($authres);
-		$autdata="INSERT INTO `autentikasi`(`idautentikasi`, `keyautentikasi`, `ipaddress`, `date`) VALUES ('1','".$rowauth['key1'].$rowauth['key2'].$rowauth['key3']."','".$_SESSION['guardian']."','".date("Y-m-d H:i:s")."')";
+		$autdata="INSERT INTO `autentikasi`(`idautentikasi`, `keyautentikasi`, `ipaddress`, `date`) VALUES ('1','".sha1(md5($rowauth['key1'].$rowauth['key2'].$rowauth['key3']))."','".$_SESSION['guardian']."','".date("Y-m-d H:i:s")."')";
 		$authres=mysql_query($autdata);
 		
 		$authlog="INSERT INTO `autentikasilogdetail`(`ipaddresss`, `date`) VALUES ('".ip()."','".date("Y-m-d H:i:s")."')";
