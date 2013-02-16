@@ -6,8 +6,9 @@ protect admin page from unauthorized access when the password got leak
 
 how to use admindefender :
 add this code to your admin login page
+
+
 <?php
-  	
 		if(!isset($_SESSION['guardian'])){
 			echo "
             <script language='javascript'>
