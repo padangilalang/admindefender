@@ -39,3 +39,6 @@ add this code to your admin login page
 			}
 		}
 		?>
+
+
+import the guardian.sql into your database
