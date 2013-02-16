@@ -73,7 +73,7 @@ else{
 //authprocess
 
 if(isset($_POST['key1']) && isset($_POST['key2']) && isset($_POST['key3'])){
-	$authen="SELECT * FROM `keyautentikasi` WHERE key1='".mysql_real_escape_string(xss_clean(htmlentities($_POST['key1'])))."' and key2='".mysql_real_escape_string(xss_clean(htmlentities($_POST['key2'])))."' and key3='".mysql_real_escape_string(xss_clean(htmlentities($_POST['key3'])))."'";
+	$authen="SELECT * FROM `keyautentikasi` WHERE key1='".mysql_real_escape_string(xss_clean($_POST['key1']))."' and key2='".mysql_real_escape_string(xss_clean($_POST['key2']))."' and key3='".mysql_real_escape_string(xss_clean($_POST['key3']))."'";
 	$authres=mysql_query($authen);
 	$rowauth=mysql_num_rows($authres);
 	if($rowauth>0){
